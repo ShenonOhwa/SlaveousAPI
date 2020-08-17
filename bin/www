@@ -1,0 +1,111 @@
+#!/usr/bin/env node
+
+/**
+ * Modules de dépendances.
+ */
+
+var app = require('../app');
+var debug = require('debug')('node:server');
+var http = require('http');
+
+/**
+ * Récupère le port depuis l'environnement et l'enregistre dans Express.
+ */
+
+// var port = normalizePort(process.env.PORT || '8080');
+// var port = normalizePort(process.env.PORT || '80');
+var port = normalizePort(process.env.PORT || '8081');
+app.set('port', port);
+
+/**
+ * Crée un serveur HTTP.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Écoute sur le port spécifié, sur toutes les interfaces du réseau.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * "Normalise" un port en tant que nombre, chaîne de caractères, ou faux.
+ */
+
+function normalizePort(val)
+{
+	var port = parseInt(val, 10);
+	
+	if(isNaN(port))
+	{
+		// named pipe
+		return val;
+	}
+	
+	if(port >= 0)
+	{
+		// port number
+		return port;
+	}
+	
+	return false;
+}
+
+/**
+ * "Écouteur d'événements" pour des événements d'"erreurs" d'un serveur HTTP.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+  
+  // Gère une écoute spécifique d'erreurs avec des messages clairs.
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * "Écouteur d'événements" pour des "écoutes" d'événements d'un serveur HTTP.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+/*//Socket.io integration
+let io = require('socket.io')(server);
+let game = require('../controllers/CGame');
+
+// setup socket auth with sessions
+io.set('authorization', function(handshake, accept) {
+  app.session(handshake, {}, function (err) {
+    if (err) return accept(err)
+    var session = handshake.session;
+    // check if the session is valid
+    accept(null, session.user != null)
+  });
+});
+
+game.catchIOEvent(io);*/
