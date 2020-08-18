@@ -51,6 +51,7 @@ Par exemple, pour obtenir les données du compte de Shenon Ohwa, il faudra saisi
 
 Les données JSON ressembleront alors à ceci :
 
+```
 {
 	"message": "Voici les informations du compte demandé.",
 	"identifiantCompte": "ShenonOhwa",
@@ -64,6 +65,7 @@ Les données JSON ressembleront alors à ceci :
 	},
 	"methode": "GET"
 }
+```
 
 Il semble cependant y avoir une erreur sur les dates, soit au niveau de la base de données, soit au niveau de l'application en Node.js, soit les deux, car je suis né le 4 Novembre 2000 et non le 3 ! Et c'est clairement indiqué dans le jeu de données de la base de données de l'API.
 
@@ -78,6 +80,7 @@ L'URL à saisir pour obtenir lesdites informations suit donc le même modèle qu
 
 Les données JSON ressembleront alors à ceci :
 
+```
 {
 	"message": "Voici les informations de la totalité des comptes.",
 	"informations": [
@@ -108,5 +111,6 @@ Les données JSON ressembleront alors à ceci :
 	],
 	"methode": "GET"
 }
+```
 
 Par ailleurs, il semble toujours y avoir le même problème de dates ici aussi.
