@@ -4,4 +4,4 @@ package-lock.json
 
 # Répertoires non push
 
-node-modules/
+/node-modules
