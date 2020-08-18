@@ -13,7 +13,7 @@
 		"start": "nodemon ./bin/www"
 	},
 	"gitHooks": {
-		"pre-push": "npm run lint"
+		"pre-add": "npm run lint"
 	},
 	"repository": {
 		"type": "git",
