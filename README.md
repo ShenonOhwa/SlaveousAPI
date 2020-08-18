@@ -9,7 +9,8 @@ Une API -en test et en développement- d'une application mobile.
 	* [Lancement en développement](#lancement-en-développement)
 	* [Lancement en production](#lancement-en-production)
 * [Utilisation](#utilisation)
-	* [Obtention des informations d'un compte](#obtention-des-informations-d-un-compte)
+	* [Obtention des informations d'un compte](#obtention-des-informations-dun-compte)
+	* [Obtention des informations de la totalité des comptes](#obtention-des-informations-de-la-totalité-des-comptes)
 
 # Installation
 
